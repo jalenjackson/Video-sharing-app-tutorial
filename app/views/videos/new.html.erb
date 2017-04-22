@@ -1,0 +1,44 @@
+<h1>New Video</h1>
+
+
+  <%= render 'form', video: @video %>
+
+
+
+<script>
+    $('#new_video').modal('show');
+        Dropzone.autoDiscover = false;
+        Dropzone.options.myDropzone = {
+            autoProcessQueue: false,
+            acceptedFiles: ".mp4,.mov,.wmv,.flv,.avi",
+            maxFilesize:500,
+            init: function() {
+
+                var myDropzone = this;
+                $(".submit").click(function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    myDropzone.processQueue();
+                });
+                this.on("addedfile", function() {
+
+
+
+                    if (this.files[1]!=null){
+                        this.removeFile(this.files[0]);
+                    }
+                });
+                this.on("success", function (file, responseText) {
+
+                    window.location.href = ("/videos/"+responseText.id);
+                });
+            }
+        };
+        $("#my-dropzone").dropzone({
+            addRemoveLinks: true,
+            paramName: 'video[mp4]'
+
+        });
+
+</script>
+

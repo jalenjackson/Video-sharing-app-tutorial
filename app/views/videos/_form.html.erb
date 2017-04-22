@@ -1,0 +1,20 @@
+<%= simple_form_for(@video,html:{multipart:true, class:'dropzone', id:'my-dropzone'}) do |f| %>
+    <%= f.error_notification %>
+    <br>
+    <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
+      <img style = "width:100px; height:100px;" src = "http://www.freeiconspng.com/uploads/upload-icon-31.png">
+      <h3>Drop a video file here </h3>
+      <strong>or Click to upload</strong>
+    </div><br>
+
+
+    <div class="fallback">
+      <%= f.input :mp4 %>
+    </div>
+
+
+    <div class = "submit ">
+      <%= f.button :submit, class:'submit-btn btn ' %>
+    </div>
+
+<% end %>
